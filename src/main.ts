@@ -25,6 +25,7 @@ app.put('/events', (req, res) => {
     newEvent.eventDurationMinutes = event.durationMinutes || 30;
     console.log(newEvent);
     eventController.addEvent(newEvent);
+    // TODO: call the optimization service
     res.json(newEvent);
 });
 
@@ -47,6 +48,7 @@ app.patch('/events/:id', (req, res) => {
     updatedEvent.eventDayPeriod = event.eventDayPeriod || null;
     updatedEvent.isFlexible = event.isFlexible || true;
     eventController.updateEvent(id, updatedEvent);
+    // TODO: call the optimization service
     res.json(updatedEvent);
 });
 
@@ -64,6 +66,6 @@ app.delete('/events/:id', (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port);
-
-console.log(`Listening on port ${port}`);
+app.listen(port, () => {
+    console.log(`Event service listening on port ${port}`);
+});
