@@ -2,9 +2,10 @@
   "name": "calendar_event_service",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "./build/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/carlostojal/calendar_event_service/issues"
   },
-  "homepage": "https://github.com/carlostojal/calendar_event_service#readme"
+  "homepage": "https://github.com/carlostojal/calendar_event_service#readme",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
 }
