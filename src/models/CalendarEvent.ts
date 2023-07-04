@@ -8,7 +8,7 @@ export class CalendarEvent {
     private description: string = "";
 
     // the starting date
-    private date: Date | null = null;
+    private date: Date = new Date();
     // can optimization move the event?
     private flexible: boolean = true;
     private preferredDayPeriod: DayPeriod | null = null;
@@ -52,7 +52,7 @@ export class CalendarEvent {
         this.flexible = flexible;
     }
 
-    public get eventDate(): Date | null {
+    public get eventDate(): Date {
         return this.date;
     }
 

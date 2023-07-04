@@ -2,5 +2,6 @@
 export enum DayPeriod {
     MORNING,
     AFTERNOON,
-    EVENING
+    EVENING,
+    OFF_WORK
 }
