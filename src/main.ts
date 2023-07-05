@@ -1,7 +1,9 @@
 import express, { Express, Request, Response } from 'express';
 import { EventController } from './controllers/EventController';
-import 'dotenv';
+import dotenv from 'dotenv';
 import { CalendarEvent } from './models/CalendarEvent';
+
+dotenv.config();
 
 const app: Express = express();
 
@@ -19,7 +21,7 @@ app.put('/events', (req, res) => {
     const newEvent = new CalendarEvent();
     newEvent.eventName = event.name || "New Event";
     newEvent.eventDescription = event.description || "";
-    newEvent.eventDate = event.date || new Date();
+    newEvent.eventDate = new Date(event.date) || new Date();
     newEvent.eventDayPeriod = event.dayPeriod || null;
     newEvent.isFlexible = event.flexible || true;
     newEvent.eventDurationMinutes = event.durationMinutes || 30;
@@ -44,7 +46,7 @@ app.patch('/events/:id', (req, res) => {
     updatedEvent.id = id;
     updatedEvent.eventName = event.eventName || "New Event";
     updatedEvent.eventDescription = event.eventDescription || "";
-    updatedEvent.eventDate = event.eventDate || new Date();
+    updatedEvent.eventDate = new Date(event.eventDate) || new Date();
     updatedEvent.eventDayPeriod = event.eventDayPeriod || null;
     updatedEvent.isFlexible = event.isFlexible || true;
     eventController.updateEvent(id, updatedEvent);
