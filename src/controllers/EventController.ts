@@ -1,5 +1,4 @@
-import { CalendarEvent } from '../models/CalendarEvent';
-import { Utils } from '../models/Utils';
+import { CalendarEvent, Utils } from '@carlostojal/calendar_shared';
 
 export class EventController {
 
@@ -22,10 +21,10 @@ export class EventController {
     public addEvent(event: CalendarEvent): void {
         this.events.push(event);
         this.eventsById.set(event.id, event);
-        if(this.eventsByDate.has(Utils.getDateStr(event.eventDate)))
-            this.eventsByDate.get(Utils.getDateStr(event.eventDate))?.push(event);
+        if(this.eventsByDate.has(Utils.getDateStr(event.date)))
+            this.eventsByDate.get(Utils.getDateStr(event.date))?.push(event);
         else
-            this.eventsByDate.set(Utils.getDateStr(event.eventDate), [event]);
+            this.eventsByDate.set(Utils.getDateStr(event.date), [event]);
     }
 
     public updateEvent(id: string, event: CalendarEvent): void {

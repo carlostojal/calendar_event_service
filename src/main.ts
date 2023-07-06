@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import { EventController } from './controllers/EventController';
 import dotenv from 'dotenv';
-import { CalendarEvent } from './models/CalendarEvent';
+import { CalendarEvent } from '@carlostojal/calendar_shared';
 
 dotenv.config();
 
@@ -19,12 +19,12 @@ app.get('/events', (req, res) => {
 app.put('/events', (req, res) => {
     const event = req.body;
     const newEvent = new CalendarEvent();
-    newEvent.eventName = event.name || "New Event";
-    newEvent.eventDescription = event.description || "";
-    newEvent.eventDate = new Date(event.date) || new Date();
-    newEvent.eventDayPeriod = event.dayPeriod || null;
-    newEvent.isFlexible = event.flexible || true;
-    newEvent.eventDurationMinutes = event.durationMinutes || 30;
+    newEvent.name = event.name || "New Event";
+    newEvent.description = event.description || "";
+    newEvent.date = new Date(event.date) || new Date();
+    newEvent.dayPeriod = event.dayPeriod || null;
+    newEvent.flexible = event.flexible || true;
+    newEvent.durationMinutes = event.durationMinutes || 30;
     console.log(newEvent);
     eventController.addEvent(newEvent);
     // TODO: call the optimization service
@@ -44,11 +44,11 @@ app.patch('/events/:id', (req, res) => {
     const event = req.body;
     const updatedEvent = new CalendarEvent();
     updatedEvent.id = id;
-    updatedEvent.eventName = event.eventName || "New Event";
-    updatedEvent.eventDescription = event.eventDescription || "";
-    updatedEvent.eventDate = new Date(event.eventDate) || new Date();
-    updatedEvent.eventDayPeriod = event.eventDayPeriod || null;
-    updatedEvent.isFlexible = event.isFlexible || true;
+    updatedEvent.name = event.name || "New Event";
+    updatedEvent.description = event.description || "";
+    updatedEvent.date = new Date(event.date) || new Date();
+    updatedEvent.dayPeriod = event.dayPeriod || null;
+    updatedEvent.flexible = event.flexible || true;
     eventController.updateEvent(id, updatedEvent);
     // TODO: call the optimization service
     res.json(updatedEvent);
